@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\CaptchaController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\ProfileController;
@@ -28,5 +29,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/verify', [VerificationController::class, 'show'])->name('verification.notice');
 Route::post('/verify', [VerificationController::class, 'verify'])->name('verification.verify');
 Route::post('verification/resend', [VerificationController::class, 'resend'])->name('verification.resend');
+Route::get('/captcha/verify', [CaptchaController::class, 'showCaptcha'])->name('captcha.verify');
+Route::post('/captcha/verify', [CaptchaController::class, 'verifyCaptcha'])->name('captcha.verify');
+
 
 require __DIR__ . '/auth.php';

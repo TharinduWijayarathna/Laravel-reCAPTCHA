@@ -19,9 +19,9 @@
         </div>
 
         <!-- Captcha -->
-        <div class="mt-3">
+        {{-- <div class="mt-3">
             <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.site_key') }}"></div>
-        </div>
+        </div> --}}
 
         <div class="flex items-center justify-end mt-4">
             <label for="resend"

@@ -39,7 +39,7 @@ class VerificationController extends Controller
 
                 $verificationCode->delete();
 
-                return redirect()->route('dashboard')->with('status', 'Your email has been verified!');
+                return redirect()->route('captcha.verify');
             }
 
             return back()->withErrors(['code' => 'User not found.']);

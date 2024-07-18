@@ -15,7 +15,6 @@ class VerificationRequest extends FormRequest
     {
         return [
             'code' => 'required|string',
-            'g-recaptcha-response' => 'required|recaptcha',
         ];
     }
 }
