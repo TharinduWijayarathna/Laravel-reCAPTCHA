@@ -21,10 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Validator::extend('recaptcha', function ($attribute, $value, $parameters, $validator) {
-            $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . env('RECAPTCHA_SECRET_KEY') . '&response=' . $value);
-            $responseKeys = json_decode($response, true);
-            return $responseKeys['success'];
-        });
+        //
     }
 }
