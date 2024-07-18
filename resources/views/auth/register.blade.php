@@ -34,9 +34,13 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+        <div>
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+        </div>
+
+
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="g-recaptcha ml-4" data-sitekey="{{ config('services.recaptcha.site_key') }}"
-                data-callback='onSubmit' data-action='register'>
+            <x-primary-button class="ml-1" type="button" onclick="registerUser(event)">
                 {{ __('Register') }}
             </x-primary-button>
         </div>
@@ -44,8 +48,16 @@
 
     @push('scripts')
         <script>
-            function onSubmit(token) {
-                document.getElementById("register-form").submit();
+            function registerUser(e) {
+                e.preventDefault();
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', {
+                        action: 'register'
+                    }).then(function(token) {
+                        document.getElementById('g-recaptcha-response').value = token;
+                        document.getElementById('register-form').submit();
+                    });
+                });
             }
         </script>
     @endpush
